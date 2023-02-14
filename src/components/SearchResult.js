@@ -54,7 +54,6 @@ function SearchResult() {
         setPage((prev) => prev - 1);
       }
     } else if (eventDetail === "next") {
-      console.log(page, buses.length - 1);
       if (page === buses.length - 1) {
         setPage(0);
       } else {
@@ -107,11 +106,11 @@ function SearchResult() {
               </button>
             );
           })}
-          <span className={classes["icon_container"]}>
-            <GrNext
-              onClick={() => clickHandler(0, "next")}
-              className={classes.icon}
-            />
+          <span
+            onClick={() => clickHandler(0, "next")}
+            className={classes["icon_container"]}
+          >
+            <GrNext className={classes.icon} />
           </span>
         </div>
       </div>
