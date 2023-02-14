@@ -1,0 +1,14 @@
+.me-auto {
+  color: #fff !important;
+  font-size: 1.6rem !important;
+}
+
+.dropdown {
+  /* text-align: right !important;*/
+  /* margin-left: 1rem !important; */
+  display: flex;
+  font-size: 1.8rem;
+}
+
+/* .dropdown_c {
+} */

@@ -1,0 +1,48 @@
+html {
+  font-size: 80%;
+}
+
+.bus_container {
+  background-color: #e64356;
+  margin: 2rem 6rem;
+  padding: 1rem 3rem;
+  /*display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 20fr 20fr 20fr 20fr 20fr;
+  justify-items: center;
+  align-items: center;
+  border-radius: 6px;
+  /* color: #fff; */
+}
+
+.departure-wrapper span,
+.arrival-wrapper span {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.rating {
+  font-size: 1.6rem;
+  display: flex;
+  background-color: #f5b4bb;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  /* max-width: 10rem; */
+}
+
+.ticket_price {
+  display: flex;
+  align-items: flex-start;
+}
+
+.ticket_price span {
+  font-size: 2rem;
+}
+.small {
+  font-size: 1rem;
+}
