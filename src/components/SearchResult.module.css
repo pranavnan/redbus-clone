@@ -3,3 +3,53 @@
   /* margin: 2rem 4rem; */
   padding: 0.1rem 0;
 }
+.navigation_button {
+  /* padding: rem; */
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  background-color: #e64356;
+  transition: all 0.3s;
+  text-align: center;
+  border-radius: 100%;
+  /* border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.navigation_button:hover {
+  background-color: #eb6978;
+  cursor: pointer;
+}
+
+.navigation_container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.parent_container {
+  display: flex;
+  justify-content: space-around;
+}
+.icon_container {
+  background-color: #e64356;
+  padding: 1rem;
+  border-radius: 100%;
+  transition: all 0.3s;
+}
+.icon {
+  font-size: 2rem;
+}
+.icon_container:hover {
+  background-color: #eb6978;
+  cursor: pointer;
+}
+.active {
+  background-color: #45141a;
+  color: #fff;
+}

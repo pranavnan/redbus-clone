@@ -1,20 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import busContext from "../store/bus-data";
 import BusResult from "./BusResult";
 import classes from "./SearchResult.module.css";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 function SearchResult() {
   const [buses, setBuses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(0);
 
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  const { from, to } = useContext(busContext);
+  // const { from, to } = useContext(busContext);
 
-  function paginate(busData) {}
+  function paginate(busData) {
+    const perPage = 6;
+    const totalPages = Math.ceil(busData.length / perPage);
+
+    const newBusData = Array.from({ length: totalPages }, (_, idx) => {
+      return busData.slice(idx * perPage, idx * perPage + perPage);
+    });
+    return newBusData;
+  }
 
   useEffect(() => {
     async function getData() {
@@ -32,15 +41,34 @@ function SearchResult() {
         };
       });
       // busData => 30
-      setBuses(busData);
-      console.log(busData);
+      setBuses(paginate(busData));
     }
     getData();
   }, []);
 
+  function clickHandler(id, eventDetail) {
+    if (eventDetail === "prev") {
+      if (page === 0) {
+        setPage(buses.length - 1);
+      } else {
+        setPage((prev) => prev - 1);
+      }
+    } else if (eventDetail === "next") {
+      console.log(page, buses.length - 1);
+      if (page === buses.length - 1) {
+        setPage(0);
+      } else {
+        setPage((prev) => prev + 1);
+      }
+    } else {
+      setPage(id);
+    }
+  }
+
   if (isLoading) {
     return <Spinner animation="border" variant="danger" />;
   }
+
   /*
 
   arrivalTime: "12:09AM"
@@ -55,9 +83,38 @@ function SearchResult() {
   */
   return (
     <div className={classes["bus-render"]}>
-      {buses.map((bus) => {
+      {buses[page]?.map((bus) => {
         return <BusResult key={bus.id * Math.random()} bus={bus} />;
       })}
+      <div className={classes["parent_container"]}>
+        <div className={classes["navigation_container"]}>
+          <span
+            className={classes["icon_container"]}
+            onClick={() => clickHandler(0, "prev")}
+          >
+            <GrPrevious className={classes.icon} />
+          </span>
+          {buses.map((_, idx) => {
+            return (
+              <button
+                onClick={() => clickHandler(idx, "directClick")}
+                className={`${classes.navigation_button} ${
+                  idx === page ? classes.active : ""
+                }`}
+                key={idx}
+              >
+                {idx + 1}
+              </button>
+            );
+          })}
+          <span className={classes["icon_container"]}>
+            <GrNext
+              onClick={() => clickHandler(0, "next")}
+              className={classes.icon}
+            />
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
